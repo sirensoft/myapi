@@ -16,7 +16,14 @@ var knex = require('knex')({
       user : 'root',
       password : '1234',
       database : 'react'
-    }
+    },
+	pool :{
+		afterCreate:(conn,done)=>{
+			conn.query("SET NAMES UTF8",(err)=>{
+				done(err,conn);
+			})
+		}
+	}
   });
 
 
